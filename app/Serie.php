@@ -8,6 +8,7 @@ class Serie extends Model
 {
     public $timestamps = false;
     protected $fillable = ['nome', 'capa'];
+    
     public function getCapaUrlAttribute()
     {
         if ($this->capa) {
@@ -19,5 +20,10 @@ class Serie extends Model
     public function temporadas()
     {
         return $this->hasMany(Temporada::class);
+    }
+
+    public function favorita()
+    {
+        return $this->belongsToMany(Favorita::class);
     }
 }

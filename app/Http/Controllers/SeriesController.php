@@ -6,6 +6,10 @@ use App\Serie;
 use App\Services\CriadorDeSerie;
 use App\Services\RemovedorDeSerie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Favorita;
+
+
 class SeriesController extends Controller
 {
     // public function __construct()
@@ -18,7 +22,10 @@ class SeriesController extends Controller
             ->get();
         $mensagem = $request->session()->get('mensagem');
 
-        return view('series.index', compact('series', 'mensagem'));
+        $usuario_id = Auth::user()->id;
+        $favoritas = Favorita::where('usuario_id', $usuario_id)->get();
+
+        return view('series.index', compact('series', 'mensagem', 'favoritas', 'usuario_id'));
     }//faz uma query no banco buscando os dados da Serie e exibindo na view
 
     public function create()
@@ -74,6 +81,35 @@ class SeriesController extends Controller
         $novoNome = $request->nome;
         $serie->nome = $novoNome;
         $serie->save();
+    }
+
+    public function favoritaSerie(int $id){
+
+        $serie_id = $id;
+        $usuario_id = Auth::user()->id;
+
+        $result = Favorita::create([
+            'serie_id' => $serie_id,
+            'usuario_id' => $usuario_id
+        ]);
+    }
+
+    public function listarSeriesFavoritas(){
+
+        $usuario_id = Auth::user()->id;
+
+        $series = Favorita::where('usuario_id', '=', $usuario_id)
+            ->join('series', 'series.id', '=', 'favoritas.serie_id')->get();
+
+         return view('series.series_favoritas', compact('series'));
+
+    }
+
+    public function desfavoritaSerie(int $id)
+    {
+        var_dump($id);
+        //$usuario_id = Auth::user()->id;
+        //$result = Favorita::where('serie_id', $id && 'usuario_id', $usuario_id )->delete();
     }
 }
 
