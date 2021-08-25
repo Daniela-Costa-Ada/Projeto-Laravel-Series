@@ -14,7 +14,6 @@ class CreateSeriesFav extends Migration
     public function up()
     {
         Schema::create('favoritas', function (Blueprint $table) {
-            //$table->bigIncrements('id');
             $table->integer('usuario_id');
             $table->integer('serie_id');
             $table->foreign('usuario_id')

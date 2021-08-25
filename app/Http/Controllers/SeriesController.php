@@ -22,10 +22,13 @@ class SeriesController extends Controller
             ->get();
         $mensagem = $request->session()->get('mensagem');
 
-        $usuario_id = Auth::user()->id;
-        $favoritas = Favorita::where('usuario_id', $usuario_id)->get();
+        if(Auth::check()){
+            $usuario_id = Auth::user()->id;
+            $favoritas = Favorita::where('usuario_id', $usuario_id)->get();
+            return view('series.index', compact('series', 'mensagem', 'favoritas', 'usuario_id'));
+        }
 
-        return view('series.index', compact('series', 'mensagem', 'favoritas', 'usuario_id'));
+        return view('series.index', compact('series', 'mensagem'));
     }//faz uma query no banco buscando os dados da Serie e exibindo na view
 
     public function create()
@@ -107,9 +110,11 @@ class SeriesController extends Controller
 
     public function desfavoritaSerie(int $id)
     {
-        var_dump($id);
-        //$usuario_id = Auth::user()->id;
-        //$result = Favorita::where('serie_id', $id && 'usuario_id', $usuario_id )->delete();
+      
+        $usuario_id = Auth::user()->id;
+        $result = Favorita::where('serie_id', '=' ,$id)
+        ->where('usuario_id', '=', $usuario_id)
+        ->delete();
     }
 }
 
