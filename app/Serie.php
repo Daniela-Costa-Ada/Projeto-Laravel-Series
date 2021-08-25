@@ -1,9 +1,9 @@
 <?php
 namespace App;
+use App\Models\Categoria;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 use Storage;
-
 class Serie extends Model
 {
     public $timestamps = false;
@@ -20,4 +20,8 @@ class Serie extends Model
     {
         return $this->hasMany(Temporada::class);
     }
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class);
+    }// uma serie, por enquanto, pertence a uma categoria
 }
