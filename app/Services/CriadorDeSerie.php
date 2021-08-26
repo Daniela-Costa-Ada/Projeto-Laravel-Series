@@ -8,12 +8,14 @@ class CriadorDeSerie
         string $nomeSerie,
         int $qtdTemporadas,
         int $epPorTemporada,
-        ?string $capa
+        ?string $capa,
+        int $categoria_id
     ): Serie {
         DB::beginTransaction();
         $serie = Serie::create([
             'nome' => $nomeSerie,
-            'capa' => $capa
+            'capa' => $capa,
+            'categoria_id' => $categoria_id
         ]);
         $this->criaTemporadas($qtdTemporadas, $epPorTemporada, $serie);
         DB::commit();
@@ -33,7 +35,6 @@ class CriadorDeSerie
             $this->criaEpisodios($epPorTemporada, $temporada);
         }
     }
-
     /**
      * @param int $epPorTemporada
      * @param \Illuminate\Database\Eloquent\Model $temporada

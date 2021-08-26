@@ -1,0 +1,35 @@
+[33mcommit 9773e818c8db9514d6956626da217ae10337846e[m[33m ([m[1;36mHEAD -> [m[1;32mfeature-categorias[m[33m)[m
+Author: Daniela Costa <daniela.costa.1031459@sga.pucminas.br>
+Date:   Wed Aug 25 13:20:29 2021 -0300
+
+    creates the category models and adds the name field and its relation to series
+
+[33mcommit 4e48fbe7de05c0c63121b81d5ee5e939efd5e26c[m
+Author: Daniela Costa <daniela.costa.1031459@sga.pucminas.br>
+Date:   Wed Aug 25 13:12:39 2021 -0300
+
+    add field to choose category in view
+
+[33mcommit ca04551dc6174cefa493ecf82e16b836f481be3c[m
+Author: Daniela Costa <daniela.costa.1031459@sga.pucminas.br>
+Date:   Wed Aug 25 13:09:31 2021 -0300
+
+    call categoriaseeder
+
+[33mcommit 9413dbb20f2610a1b47ee75547096f82b61214c7[m
+Author: Daniela Costa <daniela.costa.1031459@sga.pucminas.br>
+Date:   Wed Aug 25 13:06:13 2021 -0300
+
+    category primary key relationship with series foreign key
+
+[33mcommit f4b57289e1f48856137640bb34ed77331a0e25ff[m
+Author: Daniela Costa <daniela.costa.1031459@sga.pucminas.br>
+Date:   Wed Aug 25 13:02:39 2021 -0300
+
+    add relationship with category
+
+[33mcommit 6c316afeb7e6dac3d380c8e6bdfa23612f63be0e[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/feature/criar-favoritos[m[33m, [m[1;31morigin/feature-categorias[m[33m, [m[1;31morigin/development[m[33m, [m[1;32mmain[m[33m, [m[1;32mfeature/criar-favoritos[m[33m, [m[1;32mdevelopment[m[33m, [m[1;32mcheckout[m[33m)[m
+Author: Daniela Costa <daniela.costa.1031459@sga.pucminas.br>
+Date:   Tue Aug 24 11:28:56 2021 -0300
+
+    upload version projeto-alura
