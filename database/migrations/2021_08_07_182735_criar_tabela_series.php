@@ -19,7 +19,7 @@ class CriarTabelaSeries extends Migration
             $table->integer('categoria_id');   
             $table->foreign('categoria_id')
             ->references('id')
-            ->on('categoria');       
+            ->on('categorias');       
         });
     }
 

@@ -1,13 +1,15 @@
 <?php
 namespace App\Http\Controllers;
 use App\Events\NovaSerie;
+use App\Favorita;
 use App\Http\Requests\SeriesFormRequest;
 use App\Models\Categoria;
 use App\Serie;
 use App\Services\CriadorDeSerie;
 use App\Services\RemovedorDeSerie;
+use Database\Seeders\CategoriaSeeder;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SeriesController extends Controller

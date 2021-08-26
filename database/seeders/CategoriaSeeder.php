@@ -22,7 +22,7 @@ class CategoriaSeeder extends Seeder
     public function run()
     {
         foreach (self::$nomes as $nome) {
-            DB::table('categoria')->insert([
+            DB::table('categorias')->insert([
                 'nome' => $nome
             ]);
         }
