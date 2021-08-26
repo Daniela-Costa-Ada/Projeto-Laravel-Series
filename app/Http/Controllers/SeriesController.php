@@ -6,20 +6,28 @@ use App\Serie;
 use App\Services\CriadorDeSerie;
 use App\Services\RemovedorDeSerie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Favorita;
+
+
 class SeriesController extends Controller
 {
     // public function __construct()
     // {
     //     $this->middleware('auth');
     // }// apenas para adicionar uma autenticação direto no construtor
-    public function index(Request $request) {
-        $series = Serie::query()
-            ->orderBy('nome')
-            ->get();
+    public function index(Request $request) 
+    {
+        
         $mensagem = $request->session()->get('mensagem');
-
+        $series = Serie::getSeries();
+        if(Auth::check()){
+            $favoritas = Favorita::getFavoritas();
+            return view('series.index', compact('series', 'mensagem', 'favoritas'));
+        }
         return view('series.index', compact('series', 'mensagem'));
-    }//faz uma query no banco buscando os dados da Serie e exibindo na view
+    }
+    //faz uma query no banco buscando os dados da Serie e exibindo na view
 
     public function create()
     {
@@ -75,5 +83,23 @@ class SeriesController extends Controller
         $serie->nome = $novoNome;
         $serie->save();
     }
+
+    public function favoritaSerie(int $id)
+    {
+        Favorita::postFavorita($id);
+    }
+
+    public function desfavoritaSerie(int $id)
+    {
+        Favorita::postDesfavorita($id);
+    }
+
+    public function listarSeriesFavoritas()
+    {
+        $series = Favorita::getPaginaListaSeriesFavoritas();
+        return view('series.series_favoritas', compact('series'));
+    }
+
+
 }
 

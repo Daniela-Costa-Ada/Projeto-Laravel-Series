@@ -1,10 +1,11 @@
 <?php
 namespace App\Services;
-use App\{Serie, Temporada, Episodio};
+use App\{Serie, Temporada, Episodio, Favorita};
 use App\Events\SerieApagada;
 use App\Jobs\ExcluirCapaSerie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+
 class RemovedorDeSerie
 {
     public function removerSerie(int $serieId): string
@@ -16,10 +17,12 @@ class RemovedorDeSerie
             //dd($serie, $serieobj);
             $nomeSerie = $serie->nome;
             $this->removerTemporadas($serie);
+            $this->removerFavoritas($serie);
             $serie->delete();
             $evento = new SerieApagada($serieobj);//cria evento
             event($evento);//emite evento pra ser ouvido pelo listener mas está inativo pois o job ta ativo
             ExcluirCapaSerie::dispatch($serieobj);//Aqui acontece a exclusao de fato pelo job excluir capa
+       
         });
         return $nomeSerie;
     }
@@ -43,5 +46,11 @@ criando o objeto é possivel excluir a capa*/
         $temporada->episodios->each(function (Episodio $episodio) {
             $episodio->delete();
         });
+    }
+
+    private function removerFavoritas(Serie $serie)
+    {
+       $result = Favorita::where('serie_id', $serie->id)->delete();
+
     }
 }
