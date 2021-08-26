@@ -21,12 +21,10 @@ Minhas séries favoritas
                 </span>
             </span>  
 
-            <span >  
-            
+            <span>  
                 <button title="Desfavoritar"  id="desfavorita-{{ $serie->id }}" class="btn btn-danger btn-sm mr-1" onclick="desfavoritaSerie(({{ $serie->id }}))">
                     <i class="fas fa-heart" ></i>
                 </button> 
-            
             </span>
         </div> 
     </li>

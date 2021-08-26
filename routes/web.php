@@ -19,8 +19,7 @@ Route::post('/series/{id}/favoritaSerie', 'SeriesController@favoritaSerie')
 Route::post('/series/{id}/desfavoritaSerie', 'SeriesController@desfavoritaSerie')     
     ->middleware('autenticador');
 Route::get('/series/seriesFavoritas', 'SeriesController@listarSeriesFavoritas')
-    ->name('series_favoritas')
-    ->middleware('autenticador');
+    ->name('series_favoritas')->middleware('autenticador');
 
 Route::get('/series/{serieId}/temporadas', 'TemporadasController@index');
 Route::get('/temporadas/{temporada}/episodios', 'EpisodiosController@index');

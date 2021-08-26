@@ -4,6 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage as FacadesStorage;
 use Storage;
 
+
 class Serie extends Model
 {
     public $timestamps = false;
@@ -25,5 +26,12 @@ class Serie extends Model
     public function favorita()
     {
         return $this->belongsToMany(Favorita::class);
+    }
+
+    public static function getSeries()
+    {
+        return Serie::query()
+           ->orderBy('nome')
+           ->get();
     }
 }

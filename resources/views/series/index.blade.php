@@ -17,13 +17,11 @@ Séries
     @foreach($series as $serie)
     <?php $eFavorita = false; ?>
 
-    @auth
+         @auth
          @foreach($favoritas as $favorita)
-            <?php if($serie->id == $favorita->serie_id && $usuario_id == $favorita->usuario_id) { 
-                $eFavorita = true;
-                 } ?>
+            <?php if($serie->id == $favorita->serie_id) { $eFavorita = true; } ?>
          @endforeach
-    @endauth
+        @endauth
 
     <li class="list-group-item d-flex justify-content-between align-items-center">
 
@@ -50,24 +48,16 @@ Séries
         <span class="d-flex">
 
             @auth
-           
-
-            
-                <button title="Favoritar" <?php if($eFavorita === true) { ?> hidden <?php } ?> id="favoritar-{{ $serie->id }}" class="btn btn-dark btn-sm mr-1" onclick="favoritaSerie(({{ $serie->id }}))">
+                <button title="Favoritar" <?php if($eFavorita) { ?> hidden <?php } ?> id="favoritar-{{ $serie->id }}" class="btn btn-dark btn-sm mr-1" onclick="favoritaSerie(({{ $serie->id }}))">
                     <i class="fas fa-heart" ></i>
                 </button>
-            @endauth
-
-            @auth
-                <button title="Desfavoritar" <?php if($eFavorita === false) { ?> hidden <?php } ?> id="desfavoritar-{{ $serie->id }}" class="btn btn-danger btn-sm mr-1" onclick="desfavoritaSerie(({{ $serie->id }}))">
+                <button title="Desfavoritar" <?php if(!$eFavorita) { ?> hidden <?php } ?> id="desfavoritar-{{ $serie->id }}" class="btn btn-danger btn-sm mr-1" onclick="desfavoritaSerie(({{ $serie->id }}))">
                     <i class="fas fa-heart" ></i>
                 </button>
-            @endauth
-
-            @auth
-            <button class="btn btn-info btn-sm mr-1" onclick="toggleInput({{ $serie->id }})">
-                <i class="fas fa-edit"></i>
-            </button>
+        
+                <button class="btn btn-info btn-sm mr-1" onclick="toggleInput({{ $serie->id }})">
+                    <i class="fas fa-edit"></i>
+                </button>
             @endauth
 
             <a href="/series/{{ $serie->id }}/temporadas" class="btn btn-info btn-sm mr-1">
