@@ -7,7 +7,7 @@ use Storage;
 class Serie extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['nome', 'capa'];
+    protected $fillable = ['nome', 'capa', 'categoria_id'];
     public function getCapaUrlAttribute()
     {
         if ($this->capa) {
@@ -24,4 +24,10 @@ class Serie extends Model
     {
         return $this->belongsTo(Categoria::class);
     }// uma serie, por enquanto, pertence a uma categoria
+    public static function getSeries()
+    {
+        return  Serie::join('categorias', 'series.categoria_id', '=', 'categorias.id')
+        ->select('series.*', 'categorias.nome as categoriaNome') 
+        ->get();
+    }
 }

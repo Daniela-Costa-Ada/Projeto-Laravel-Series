@@ -16,7 +16,11 @@ Séries
         <div>
             <img src="{{ $serie->capa_url }}" class="img-thumbnail" height="100px" width="100px">
             <span id="nome-serie-{{ $serie->id }}">{{ $serie->nome }}
-            </span>
+            </span>            
+        </div>  
+        <div>            
+            <span id="nome-categoria-{{ $serie->categoria_id }}">{{ $serie->categoriaNome }}
+            </span>        
         </div>  
         <div class="input-group w-50" hidden id="input-nome-serie-{{ $serie->id }}">
             <input type="text" class="form-control" value="{{ $serie->nome }}">

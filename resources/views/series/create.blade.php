@@ -28,8 +28,12 @@
             <input type="number" class="form-control" name="ep_por_temporada" id="ep_por_temporada">
         </div> 
         <div class="col col-3">
-            <label for="nome" class="">Categoria</label>
-            <input type="text" class="form-control" name="categoria" id="categoria">
+            <label for="categoria_id" class="">Categoria</label>
+                <select id="categoria_id" name="categoria_id">  
+                  @foreach($categorias as $categoria)
+                      <option value={{ $categoria->id }}>{{ $categoria->nome }}</option>
+                  @endforeach
+                </select>           
         </div>   
     </div>    
     <div class="row">
