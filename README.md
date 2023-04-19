@@ -20,8 +20,8 @@
 
 - `Funcionalidade 1`: Cadastra series e filmes, exclui.
 
-# 📁 Acesso ao projeto
-
+# 📁 Estrutura do projeto
+![laravel projeto mapa mental1](https://user-images.githubusercontent.com/67515138/233148560-2770a919-6d59-4616-86e7-c7685ee46957.jpg)
 
 # 🛠️ Abrir e rodar o projeto
 
